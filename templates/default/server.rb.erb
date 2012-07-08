@@ -32,3 +32,13 @@ signing_ca_cert    "/etc/chef/certificates/cert.pem"
 signing_ca_key     "/etc/chef/certificates/key.pem"
 signing_ca_user    "chef"
 signing_ca_group   "chef"
+
+# http://tickets.opscode.com/browse/CHEF-3256
+module ::Chef::Expander
+  VNODES = 16
+end
+module ::Chef::IndexQueue
+  class AmqpClient
+    VNODES = 16
+  end
+end
